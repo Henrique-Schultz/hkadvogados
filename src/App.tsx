@@ -1,84 +1,25 @@
-import { useState } from "react";
-import "./App.css";
-import emailjs from "@emailjs/browser";
+import EntreEmContato from "./components/sections/EntreEmContato";
+import Header from "./components/sections/Header";
+import QuemSomos from "./components/sections/QuemSomos";
+import Video from "./components/Video";
 
 function App() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-    date: "",
-  });
-
-  const EMAIL_CONFIG = {
-    service: "service_77ktvf8",
-    template: "template_ablm3pf",
-    key: "NmXQHU6G7U8xU_ceO",
-  };
-
-  const handleSend = () => {
-    const currentForm = {
-      ...form,
-      date: new Date().toLocaleString("pt-BR"),
-    };
-    emailjs
-      .send(
-        EMAIL_CONFIG.service,
-        EMAIL_CONFIG.template,
-        currentForm,
-        EMAIL_CONFIG.key,
-      )
-      .then(() => {
-        alert("Email Enviado");
-      });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
-    <>
-      <div id="app">
-        <h1>HK Advogados</h1>
-        <div id="inputs">
-          <div id="input-container">
-            <h3>Nome</h3>
-            <input
-              name="name"
-              value={form.name}
-              type="text"
-              onChange={handleChange}
-            />
-          </div>
-          <div id="input-container">
-            <h3>Email</h3>
-            <input
-              name="email"
-              value={form.email}
-              type="text"
-              onChange={handleChange}
-            />
-          </div>
-          <div id="input-container">
-            <h3>Mensagem</h3>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <code id="link" onClick={handleSend}>
-          Enviar
-        </code>
+    <div className="flex flex-col bg-[var(--dark-blue)] items-center justify-start font-jakarta">
+      <Header />
+      {/* <EntreEmContato /> */}
+      <Video />
+      <QuemSomos />
+      <div className="w-full p-4 gap-4 flex items-center justify-center bg-gray-800">
+        <div className="flex w-16 h-16 bg-[var(--dark-blue)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--grey)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--light-grey)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--white)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--cream)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--gold)]"></div>
+        <div className="flex w-16 h-16 bg-[var(--shadow)]"></div>
       </div>
-    </>
+    </div>
   );
 }
 

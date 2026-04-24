@@ -4,6 +4,11 @@ import babel from "@rolldown/plugin-babel";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: true,
+    allowedHosts: ["localhost"],
+  },
+
   base: "/hkadvogados/",
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
 });
