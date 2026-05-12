@@ -6,7 +6,6 @@ import QuemSomos from "./components/sections/QuemSomos";
 import Socios from "./components/sections/Socios";
 import Video from "./components/Video";
 import Footer from "./components/Footer";
-import { useState } from "react";
 
 function App() {
   return (
