@@ -1,10 +1,54 @@
+import { useState } from "react";
+import { useHeaderVisibility } from "../hooks/useHeaderVisibility";
+import { useScrollToSection } from "../hooks/useScrollToSection";
+
 function Header() {
+  const { scrollToSection } = useScrollToSection();
+
+  const [isHeaderInteraction, setIsHeaderInteraction] = useState(false);
+
+  const { isVisible } = useHeaderVisibility({
+    headerInteraction: isHeaderInteraction,
+  });
+
+  const handleScrollToSection = (sectionId: string) => {
+    setIsHeaderInteraction(true);
+
+    scrollToSection(sectionId);
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        setIsHeaderInteraction(false);
+      }, 2000);
+    });
+  };
+
   return (
-    <header className=" shadow overflow-hidden fixed md:w-[50vw] w-[90vw] mx-7 md:h-[4vw] h-[10vw] rounded-full box-border top-8 z-20 ">
-      <div className="flex h-full items-center md:justify-between justify-center px-14 bg-[#F6F3ED]/20 ">
-        <div className="md:block hidden h-full py-[1.1vw] mr-[20px] ">
+    <header
+      className={`
+        fixed top-8 z-20
+        md:w-[50vw] w-[90vw]
+        md:h-[4vw] h-[10vw]
+        rounded-full overflow-hidden
+        transition-transform duration-300 ease-in-out
+        ${isVisible ? "translate-y-0" : "-translate-y-[200%]"}
+      `}
+    >
+      <div
+        className="
+          flex h-full items-center
+          md:justify-between justify-center
+          px-14
+          bg-[#F6F3ED]/20
+          backdrop-blur-md
+          border border-white/10
+          shadow-lg
+        "
+      >
+        <div className="md:block hidden h-full py-[1.1vw] mr-[20px]">
           <svg
-            className="block h-[100%] "
+            onClick={() => handleScrollToSection("video")}
+            className="block h-[100%] hover:cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             width="auto"
@@ -439,10 +483,42 @@ function Header() {
           </svg>
         </div>
         <nav className="flex md:text-2xl text-[1.3rem] justify-between whitespace-nowrap gap-6">
-          <a>quem somos</a>
-          <a>área de atuação</a>
-          <a>sócios</a>
-          <a>contato</a>
+          <a
+            onClick={() => {
+              setIsHeaderInteraction(true);
+              handleScrollToSection("quem-somos");
+            }}
+            className="hover:cursor-pointer"
+          >
+            quem somos
+          </a>
+          <a
+            onClick={() => {
+              setIsHeaderInteraction(true);
+              handleScrollToSection("areas-de-atuacao");
+            }}
+            className="hover:cursor-pointer"
+          >
+            área de atuação
+          </a>
+          <a
+            onClick={() => {
+              setIsHeaderInteraction(true);
+              handleScrollToSection("socios");
+            }}
+            className="hover:cursor-pointer"
+          >
+            sócios
+          </a>
+          <a
+            onClick={() => {
+              setIsHeaderInteraction(true);
+              handleScrollToSection("contato");
+            }}
+            className="hover:cursor-pointer"
+          >
+            contato
+          </a>
         </nav>
       </div>
     </header>

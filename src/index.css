@@ -14,7 +14,10 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --jakarta: "Plus Jakarta Sans" font-synthesis: none;
+  --jakarta: "Plus Jakarta Sans";
+  --montserrat: "Montserrat";
+
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,4 +33,20 @@ body {
   width: 100%;
   font-family: var(--jakarta);
   font-size: 62.5%;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease;
 }

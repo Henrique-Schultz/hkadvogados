@@ -1,6 +1,12 @@
-import Header from "./components/sections/Header";
+import Divider from "./components/Divider";
+import AreasDeAtuacao from "./components/sections/AreasDeAtuacao";
+import EntreEmContato from "./components/sections/EntreEmContato";
+import Header from "./components/Header";
 import QuemSomos from "./components/sections/QuemSomos";
+import Socios from "./components/sections/Socios";
 import Video from "./components/Video";
+import Footer from "./components/Footer";
+import { useState } from "react";
 
 function App() {
   return (
@@ -8,15 +14,11 @@ function App() {
       <Header />
       <Video />
       <QuemSomos />
-      <div className="w-full p-4 gap-4 flex items-center justify-center bg-gray-800">
-        <div className="flex w-16 h-16 bg-[var(--dark-blue)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--grey)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--light-grey)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--white)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--cream)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--gold)]"></div>
-        <div className="flex w-16 h-16 bg-[var(--shadow)]"></div>
-      </div>
+      <Divider />
+      <AreasDeAtuacao />
+      <Socios />
+      <EntreEmContato />
+      <Footer />
     </div>
   );
 }

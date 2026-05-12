@@ -1,24 +1,27 @@
-function Video() {
+import { useScrollToSection } from "../hooks/useScrollToSection";
+import { useGoToExternalLink } from "../hooks/useGoToExternalLink";
+
+function Footer() {
+  const { scrollToSection } = useScrollToSection();
+  const { goToExternalLink } = useGoToExternalLink();
   return (
-    <div id="video" className="relative w-full h-[50vw]">
-      <video
-        src="/hkadvogados/predios.mp4"
-        className="w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-
-      <div className="absolute inset-0 bg-blue-900/30 mix-blend-overlay" />
-
-      <div className="absolute inset-0 flex items-center justify-center">
+    <footer
+      className="w-full px-12 py-20 md:px-16 lg:px-32
+                 flex flex-col gap-16
+                 md:flex-row md:justify-between items-start"
+    >
+      {/* LOGO */}
+      <div
+        onClick={() => scrollToSection("video")}
+        className="flex hover:cursor-pointer h-[8rem] md:self-start justify-center md:justify-start"
+      >
         <svg
-          className="mt-10 w-auto h-[40vw]"
+          className="block h-full w-auto"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
+          width="auto"
           zoomAndPan="magnify"
-          viewBox="0 0 1440 809.999993"
+          viewBox="220 240 1000 250"
           preserveAspectRatio="xMidYMid meet"
           version="1.0"
         >
@@ -148,7 +151,7 @@ function Video() {
             fill="none"
             stroke-linejoin="miter"
             d="M 0.00194032 1.499159 L 165.757157 1.499159 "
-            stroke="#0d1b2a"
+            stroke="#fff"
             stroke-width="3"
             stroke-opacity="1"
             stroke-miterlimit="4"
@@ -159,7 +162,7 @@ function Video() {
             fill="none"
             stroke-linejoin="miter"
             d="M -0.0017084 1.499159 L 165.758717 1.499159 "
-            stroke="#0d1b2a"
+            stroke="#fff"
             stroke-width="3"
             stroke-opacity="1"
             stroke-miterlimit="4"
@@ -447,8 +450,81 @@ function Video() {
           </g>
         </svg>
       </div>
-    </div>
+
+      {/* CONTEÚDO */}
+      <div
+        className="flex flex-col gap-12
+                   md:flex-row md:gap-24
+                   text-center md:text-left"
+      >
+        {/* LOCAL */}
+        <div className="flex flex-col gap-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-start text-white">
+            Local
+          </h3>
+
+          <p
+            onClick={() =>
+              goToExternalLink(
+                "https://www.google.com/search?q=Av.+Borges+de+Medeiros%2C+2500%2C%0D%0Asala+1110&client=opera-gx&hs=15b&sca_esv=af156264804c4707&biw=1491&bih=710&sxsrf=ANbL-n4H4LT-YRA4cObmXeNI4zlFYzalZA%3A1778451213812&ei=DQMBasylMeDf1sQPk4vL8AQ&ved=0ahUKEwiM4OWG36-UAxXgr5UCHZPFEk4Q4dUDCBM&uact=5&oq=Av.+Borges+de+Medeiros%2C+2500%2C%0D%0Asala+1110&gs_lp=Egxnd3Mtd2l6LXNlcnAiJ0F2LiBCb3JnZXMgZGUgTWVkZWlyb3MsIDI1MDAsCnNhbGEgMTExMEgAUABYAHAAeAGQAQCYAQCgAQCqAQC4AQPIAQD4AQL4AQGYAgCgAgCYAwDiAwUSATEgQJIHAKAHALIHALgHAMIHAMgHAIAIAQ&sclient=gws-wiz-serp",
+              )
+            }
+            className="leading-relaxed text-2xl text-start
+                       text-[var(--grey)] hover:cursor-pointer hover:text-gray-300 transition"
+          >
+            Av. Borges de Medeiros, 2500,
+            <br />
+            sala 1110, Praia de Belas,
+            <br />
+            Porto Alegre/RS, Brasil.
+          </p>
+        </div>
+
+        {/* LINKS */}
+        <div
+          className="flex flex-col gap-3
+                     text-2xl
+                     text-[var(--grey)] text-start md:text-center"
+        >
+          <a
+            onClick={() =>
+              goToExternalLink(
+                "https://www.instagram.com/hk_advogados?igsh=aTZ1YXU5YW05ajhh&utm_source=qr",
+              )
+            }
+            className="transition hover:cursor-pointer hover:text-gray-300"
+          >
+            Linkedin
+          </a>
+
+          <a
+            onClick={() =>
+              goToExternalLink("https://www.instagram.com/hk_advogados")
+            }
+            className="transition hover:cursor-pointer hover:text-gray-300"
+          >
+            Instagram
+          </a>
+
+          <a
+            onClick={() =>
+              goToExternalLink("mailto:contato@hkadvogados.com.br")
+            }
+            className="transition hover:cursor-pointer hover:text-gray-300"
+          >
+            Email
+          </a>
+
+          <a
+            onClick={() => goToExternalLink("https://wa.me/5551999041110")}
+            className="transition hover:cursor-pointer hover:text-gray-300"
+          >
+            Whatsapp
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }
 
-export default Video;
+export default Footer;
